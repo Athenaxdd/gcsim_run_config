@@ -8,22 +8,16 @@ character_name = input("Enter character name: ")
 with open('batch.txt', 'r') as f:
     lines = f.readlines()
     for line in lines:
-        # Extract the character name from the command line
+        # Extract the batch name (weapon/artifacts)
         match = re.search(r'"(\w+).txt"', line)
         if match:
             cmd_character_name = match.group(1)
-
-            # Run the command
             stream = os.popen(line)
             cmd_output = stream.read()
-
-            # Extract the total average DPS information for the specified character
             pattern = character_name + r' total avg dps: ([\d.]+)'
             match = re.search(pattern, cmd_output)
             if match:
                 avg_dps = match.group(1)
-
-                # Extract the average damage, duration, and DPS information
                 pattern = r'Average ([\d.]+) damage over ([\d.]+) seconds, resulting in ([\d]+) dps'
                 match = re.search(pattern, cmd_output)
                 if match:
