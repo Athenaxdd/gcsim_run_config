@@ -1,4 +1,5 @@
 # python script to automate weapon/artifacts(wip) replacement in gcsim config
+- (make sure to download gcsim's latest version)
 - add the gcsim config that you want in the config.txt file
 - run auto_weapons or auto_artifacts
 - run generate batch to generate batch (lol)
