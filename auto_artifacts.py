@@ -5,7 +5,7 @@ script_filename = input("Enter the name of the script file (include the .txt): "
 with open(script_filename, 'r') as f:
     script = f.read()
 
-with open('sets.txt', 'r') as f:
+with open('./artifacts/artifacts.txt', 'r') as f:
     sets = f.read().splitlines()
 
 character_input = input("Enter a character name: ")
