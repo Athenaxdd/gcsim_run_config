@@ -1,31 +1,43 @@
+
+import subprocess
 import csv
-import os
 import re
 
-# Take the character name as input from the keyboard
-character_name = input("Enter character name: ")
+# Open the text file
+with open('batch.txt', 'r') as file:
+    # Read each line in the file
+    for line in file:
+        # Strip the newline character at the end of the line
+        command = line.strip()
 
-with open('batch.txt', 'r') as f:
-    lines = f.readlines()
-    for line in lines:
-        # Extract the batch name (weapon/artifacts)
-        match = re.search(r'"(\w+).txt"', line)
-        if match:
-            cmd_character_name = match.group(1)
-            stream = os.popen(line)
-            cmd_output = stream.read()
-            pattern = character_name + r' total avg dps: ([\d.]+)'
-            match = re.search(pattern, cmd_output)
+        # Extract the name of the batch file
+        batch_name = re.search(r'"(.*).txt"', command)
+        if batch_name is not None:
+            batch_name = batch_name.group(1)
+
+        # Execute the command
+        process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+
+        # Capture the output
+        output, _ = process.communicate()
+
+        # Decode the output and split it into lines
+        lines = output.decode().split('\n')
+
+        # Check each line for the DPS information
+        for line in lines:
+            pattern = r'Average ([\d.]+) damage over ([\d.]+) seconds, resulting in ([\d]+) dps \(min: ([\d.]+) max: ([\d.]+) std: ([\d.]+)\)'
+            match = re.search(pattern, line)
             if match:
-                avg_dps = match.group(1)
-                pattern = r'Average ([\d.]+) damage over ([\d.]+) seconds, resulting in ([\d]+) dps'
-                match = re.search(pattern, cmd_output)
-                if match:
-                    average_damage = match.group(1)
-                    duration = match.group(2)
-                    dps = match.group(3)
+                average_damage = match.group(1)
+                duration = match.group(2)
+                dps = match.group(3)
+                min_dps = match.group(4)
+                max_dps = match.group(5)
+                std_dps = match.group(6)
 
-                    # Write the information to a CSV file
-                    with open('output.csv', 'w', newline='') as csvfile:
-                        writer = csv.writer(csvfile)
-                        writer.writerow([character_name + ' total avg dps:', avg_dps, 'DPS:', dps, cmd_character_name])
+                # Write the information to a CSV file
+                with open('test.csv', 'a', newline='') as csvfile:
+                    writer = csv.writer(csvfile)
+                    writer.writerow([batch_name, 'total avg dps:', average_damage, 'DPS:', dps, 'Min DPS:', min_dps, 'Max DPS:', max_dps, 'Std DPS:', std_dps])
+
