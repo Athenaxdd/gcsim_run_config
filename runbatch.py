@@ -3,6 +3,7 @@ import subprocess
 import csv
 import re
 
+csv_filename = input('Enter the name of the output CSV file: ')
 # Open the text file
 with open('batch.txt', 'r') as file:
     # Read each line in the file
@@ -37,7 +38,7 @@ with open('batch.txt', 'r') as file:
                 std_dps = match.group(6)
 
                 # Write the information to a CSV file
-                with open('test.csv', 'a', newline='') as csvfile:
+                with open('f{csv_filename}.csv', 'a', newline='') as csvfile:
                     writer = csv.writer(csvfile)
                     writer.writerow([batch_name, 'total avg dps:', average_damage, 'DPS:', dps, 'Min DPS:', min_dps, 'Max DPS:', max_dps, 'Std DPS:', std_dps])
 
