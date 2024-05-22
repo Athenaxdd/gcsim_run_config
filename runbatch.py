@@ -23,7 +23,7 @@ with open('batch.txt', 'r') as file:
         output, _ = process.communicate()
 
         # Decode the output and split it into lines
-        lines = output.decode().split('\n')
+        lines = output.decode(encoding='utf-8', errors="ignore").split('\n')
 
         # Check each line for the DPS information
         for line in lines:
@@ -38,7 +38,7 @@ with open('batch.txt', 'r') as file:
                 std_dps = match.group(6)
 
                 # Write the information to a CSV file
-                with open('f{csv_filename}.csv', 'a', newline='') as csvfile:
+                with open(f'{csv_filename}.csv', 'a', newline='') as csvfile:
                     writer = csv.writer(csvfile)
                     writer.writerow([batch_name, 'total avg dps:', average_damage, 'DPS:', dps, 'Min DPS:', min_dps, 'Max DPS:', max_dps, 'Std DPS:', std_dps])
 
