@@ -25,3 +25,6 @@ skywardspine
 vortex
 wavebreaker
 whitetassel
+balladofthefjords
+dialogues
+prospectorsdrill

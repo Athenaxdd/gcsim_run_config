@@ -24,7 +24,7 @@ rust
 sacrificialbow
 seasonedhuntersbow
 sharpshooter
-skyward
+skywardharp
 slingshot
 songofstillness
 stringless
@@ -32,3 +32,6 @@ thunderingpulse
 twilight
 viridescenthunt
 windblumeode
+scion
+rangegauge
+tfgm

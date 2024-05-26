@@ -13,7 +13,7 @@ mailedflower
 nagamasa
 oldmercspal
 pines
-prototype
+prototypearchaic
 rainslasher
 redhorn
 royalgreatsword
@@ -29,3 +29,7 @@ wastergreatsword
 whiteblind
 whiteiron
 wgs
+talkingstick
+megamagicsword
+powersaw
+verdict
