@@ -12,7 +12,7 @@ character_input = input("Enter a character name: ")
 if character_input not in script.split():
     print(f"{character_input} not found in script")
 else:
-    os.makedirs('output', exist_ok=True)
+    os.makedirs(f'{character_input} artifacts output', exist_ok=True)
     for set_line in sets:
         set_parts = set_line.split()
         set_name = set_parts[0]
