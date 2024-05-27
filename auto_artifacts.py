@@ -54,14 +54,22 @@ elif set_num == '2pc':
             set2 = sets[j].split()[0]
             lines = script.split('\n')
             new_lines = []
-            for line in lines:
+            insertion_index = None
+            
+            for index, line in enumerate(lines):
                 if line.startswith(f'{character_input} add set'):
-                    # Replace the artifact set line with the new sets
-                    new_lines.append(f'{character_input} add set="{set1}" count=2;')
-                    new_lines.append(f'{character_input} add set="{set2}" count=2;')
+                    if insertion_index is None:
+                        insertion_index = index  # Remember the first index where set lines were found
                 else:
                     new_lines.append(line)
+            
+            # Insert new set lines at the remembered position
+            if insertion_index is not None:
+                new_lines.insert(insertion_index, f'{character_input} add set="{set2}" count=2;')
+                new_lines.insert(insertion_index, f'{character_input} add set="{set1}" count=2;')
+            
             new_script = '\n'.join(new_lines)
+            
             # Write the new script to a file named after the artifact sets
             output_filename = f'{character_input} artifacts 2pc output/{set1}_{set2}.txt'
             with open(output_filename, 'w') as f:
