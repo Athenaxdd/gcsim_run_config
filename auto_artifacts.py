@@ -29,5 +29,5 @@ else:
                     if set_count is not None:
                         lines[i] = re.sub(r'count=\d+', f'count={set_count}', lines[i])
         new_script = '\n'.join([line for line in lines if line is not None])
-        with open(f'output/{set_name}.txt', 'w') as f:
+        with open(f'{character_input} artifacts output/{set_name}.txt', 'w') as f:
             f.write(new_script)
