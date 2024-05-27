@@ -1,4 +1,4 @@
-archaic
+ap
 blizzard
 bloodstained
 bolide
@@ -22,11 +22,11 @@ noblesse
 nymphsdream
 oceanhuedclam
 paleflame
-reminiscence
+shime
 tenacity
 thunderingfury
 thundersoother
 vermillion
 viridescent
 vourukashasglow
-wanderer
+wt
