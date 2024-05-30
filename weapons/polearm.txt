@@ -4,6 +4,7 @@ blacktassel
 calamity
 catch
 crescent
+crimsonmoon
 deathmatch
 dragonsbane
 dragonspine
