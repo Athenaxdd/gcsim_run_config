@@ -1,8 +1,13 @@
+@echo off
+setlocal
+
 set argument="%2"
 
 set filename=%~1
+
 set output=%filename:txt=json%
 
-"gcsim.exe" -c="%cd%/config/%filename%" -s -substatOptimFull -out="%cd%/optimized_config/%filename%" %argument% || exit /b %errorlevel%
+"gcsim.exe" -c="%cd%/config/%filename%" -s -substatOptimFull || exit /b %errorlevel%
 
-"gcsim.exe" -c="%cd%/optimized_config/%filename%" -out="%cd%/viewer_gz/%output%" -gz="true" %argument%
+"gcsim.exe" -c="%cd%/config/%filename%" -out="%cd%/viewer_gz/%output%" -gz="false" %argument%
+endlocal
