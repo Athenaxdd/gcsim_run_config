@@ -42,7 +42,7 @@ with open('batch.txt', 'r') as file:
                 std_dps = match.group(6)
         
         # Check if JSON output exists and process it
-        json_filename = f'./viewer_gz/{batch_name}.json'
+        json_filename = f'./viewer_json/{batch_name}.json'
         character_details = []
         try:
             with open(json_filename, 'r') as json_file:
