@@ -9,5 +9,5 @@ set output=%filename:txt=json%
 
 "gcsim.exe" -c="%cd%/config/%filename%" -s -substatOptimFull || exit /b %errorlevel%
 
-"gcsim.exe" -c="%cd%/config/%filename%" -out="%cd%/viewer_gz/%output%" -gz="false" %argument%
+"gcsim.exe" -c="%cd%/config/%filename%" -out="%cd%/viewer_json/%output%" -gz="false" %argument%
 endlocal
