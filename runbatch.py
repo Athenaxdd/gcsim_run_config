@@ -12,9 +12,7 @@ logging.basicConfig(filename=f'{csv_filename}_log.txt', level=logging.INFO, form
 
 logging.info('Script started. Output CSV file: %s', csv_filename)
 
-# Open the text file
 with open('batch.txt', 'r') as file:
-    # Read each line in the file
     for line in file:
         command = line.strip()
         logging.info('Processing command: %s', command)
@@ -29,8 +27,6 @@ with open('batch.txt', 'r') as file:
         logging.info('Command output: %s', output.decode(encoding='utf-8', errors="ignore"))
 
         lines = output.decode(encoding='utf-8', errors="ignore").split('\n')
-        # for line in lines:
-        #     logging.info('Output line: %s', line)
 
         average_damage = duration = dps = min_dps = max_dps = std_dps = None
 
@@ -45,7 +41,7 @@ with open('batch.txt', 'r') as file:
                 max_dps = match.group(5)
                 std_dps = match.group(6)
                 logging.info('Parsed DPS info: Avg Damage=%s, Duration=%s, DPS=%s, Min DPS=%s, Max DPS=%s, Std DPS=%s',
-                             average_damage, duration, dps, min_dps, max_dps, std_dps)
+                                average_damage, duration, dps, min_dps, max_dps, std_dps)
         
         json_filename = f'./viewer_json/{batch_name}.json'
         character_details = []
@@ -65,7 +61,7 @@ with open('batch.txt', 'r') as file:
                         "sd": stats["sd"]
                     })
                     logging.info('Character details: %s, Min DPS=%s, Max DPS=%s, Mean DPS=%s, Std DPS=%s',
-                                 name, stats["min"], stats["max"], stats["mean"], stats["sd"])
+                                    name, stats["min"], stats["max"], stats["mean"], stats["sd"])
         except FileNotFoundError:
             logging.warning('JSON file not found: %s', json_filename)
             pass
@@ -84,4 +80,4 @@ with open('batch.txt', 'r') as file:
             logging.info('Written row to CSV: %s', row)
 
 logging.info('Script finished.')
-print("Run Complete!")
+print("Batch run Complete!")

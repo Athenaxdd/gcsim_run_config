@@ -17,8 +17,6 @@ if f"{arti_txt}.txt" not in os.listdir('artifacts'):
 else:
     with open(f'./artifacts/{arti_txt}.txt', 'r') as f:
         sets = f.read().splitlines()
-# with open('./artifacts/artifacts.txt', 'r') as f:
-#     sets = f.read().splitlines()
 
 character_input = input("Enter a character name: ")
 if character_input not in script.split():
@@ -44,10 +42,8 @@ elif set_num == '4pc':
         with open(f'{character_input} artifacts output/{set_name}.txt', 'w') as f:
             f.write(new_script)
 elif set_num == '2pc':
-    # Create a directory for the character's artifact output
     os.makedirs(f'{character_input} artifacts 2pc output', exist_ok=True)
-    
-    # Iterate through each combination of artifact sets from artifacts.txt
+
     for i in range(len(sets)):
         for j in range(i + 1, len(sets)):
             set1 = sets[i].split()[0]
@@ -63,14 +59,12 @@ elif set_num == '2pc':
                 else:
                     new_lines.append(line)
             
-            # Insert new set lines at the remembered position
             if insertion_index is not None:
                 new_lines.insert(insertion_index, f'{character_input} add set="{set2}" count=2;')
                 new_lines.insert(insertion_index, f'{character_input} add set="{set1}" count=2;')
             
             new_script = '\n'.join(new_lines)
             
-            # Write the new script to a file named after the artifact sets
             output_filename = f'{character_input} artifacts 2pc output/{set1}_{set2}.txt'
             with open(output_filename, 'w') as f:
                 f.write(new_script)
